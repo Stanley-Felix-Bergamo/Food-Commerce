@@ -1,12 +1,12 @@
-import React, { ReactNode } from 'react'
-import { DefaultTheme, ThemeProvider } from 'styled-components'
+import React, { ReactNode } from 'react';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
 
 const round = (num: number) =>
   num
     .toFixed(7)
     .replace(/(\.[0-9]+?)0+$/, '$1')
-    .replace(/\.0$/, '')
-const rem = (px: number) => `${round(px / 16)}rem`
+    .replace(/\.0$/, '');
+const rem = (px: number) => `${round(px / 16)}rem`;
 
 export const theme: DefaultTheme = {
   colors: {
@@ -51,12 +51,12 @@ export const theme: DefaultTheme = {
     '4xl': rem(40),
     '5xl': rem(64),
   },
-}
+};
 
 interface ThemeProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function Theme({ children }: ThemeProps) {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
