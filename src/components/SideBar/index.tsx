@@ -9,9 +9,7 @@ import menuImg from '../../assets/menu.svg';
 const SideBar = () => {
   const [menuOpen, setOpenMenu] = useState(false);
 
-  const handleToggleMenu = () => {
-    setOpenMenu(!menuOpen);
-  };
+  const handleToggleMenu = () => setOpenMenu(!menuOpen);
 
   return (
     <Container isMenuOpen={menuOpen}>

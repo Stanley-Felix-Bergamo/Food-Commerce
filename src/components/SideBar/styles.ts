@@ -9,15 +9,18 @@ export const Container = styled.aside<ContainerProps>`
   width:${(Props) => (Props.isMenuOpen ? '7.75rem' : '16.3rem')}  ;
   padding: 2rem 0;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition width 0.3s;
+
+
 
   button {
     background: none;
     width: 100%;
     border: none;
+    outline:none;
   }
 
   nav {
@@ -51,7 +54,7 @@ export const Container = styled.aside<ContainerProps>`
           }
 
           span {
-            font-size:1rem;
+              font-size:1rem;
               font-weight:500;
               trasition: color 0.3s;
           }
@@ -77,6 +80,55 @@ export const Container = styled.aside<ContainerProps>`
               fill: ${(Props) => Props.theme.colors.yellow}
             }
           }
+      }
+    }
+  }
+
+   @media (max-width:720px){
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:999;
+    width:100%;
+    height:5rem;
+    padding: 0 0;
+    overflow-y:auto;
+
+    button {
+      display:none;
+    }
+
+    nav {
+      height:100%;
+
+      ul {
+        flex-direction:row;
+        align-items:center;
+      }
+
+      li {
+        a {
+          flex-direction:column;
+          padding: 0rem;
+
+        &.active {
+          &::after{
+            display:none;
+          }
+      }
+    }
+
+        svg {
+          width:3.25rem;
+          height:3.25rem;
+        }
+
+        span {
+          display:none;
+        }
+
+
       }
     }
   }
