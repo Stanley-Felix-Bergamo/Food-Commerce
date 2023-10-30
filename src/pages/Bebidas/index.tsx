@@ -1,8 +1,12 @@
+import Head from '../../components/Head';
+import SnackTitle from '../../components/SnackTitle';
+
 const Bebidas = () => {
   return (
-    <div>
-      <h1>Bebidas</h1>
-    </div>
+    <>
+      <Head title='Bebidas' description='Nossos melhores Bebidas' />
+      <SnackTitle>Bebidas</SnackTitle>
+    </>
   );
 };
 
