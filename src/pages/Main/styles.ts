@@ -16,12 +16,12 @@ export const Container = styled.div`
       width: 10rem;
       margin-bottom: 2rem;
     }
-    @media (max-width:720px){
+    @media (max-width: 720px) {
       display: flex;
       flex-direction: column;
       padding-bottom: 8rem;
 
-      img{
+      img {
         align-self: center;
       }
     }
