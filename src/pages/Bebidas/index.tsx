@@ -1,19 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import Head from '../../components/Head';
 import SnackTitle from '../../components/SnackTitle';
 import Snacks from '../../components/Snacks';
-import { getBebidas } from '../../services/api';
+import { SnackContext } from '../../App';
 
 const Bebidas = () => {
-  const [bebidas, setBebidas] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const BebidasReq = await getBebidas();
-      setBebidas(BebidasReq.data);
-    })();
-  }, []);
-
+  const { bebidas } = useContext(SnackContext);
   return (
     <>
       <Head title='Bebidas' description='Nossos melhores Bebidas' />
