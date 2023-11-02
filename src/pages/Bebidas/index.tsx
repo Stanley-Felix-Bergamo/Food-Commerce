@@ -1,12 +1,10 @@
-import { useContext } from 'react';
 import Head from '../../components/Head';
 import SnackTitle from '../../components/SnackTitle';
 import Snacks from '../../components/Snacks';
-import { SnackContext } from '../../contexts/SnackContext';
-
+import { UseSnack } from '../../hooks/useSnack';
 
 const Bebidas = () => {
-  const { bebidas } = useContext(SnackContext);
+  const { bebidas } = UseSnack();
   return (
     <>
       <Head title='Bebidas' description='Nossos melhores Bebidas' />
