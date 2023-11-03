@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   gap: 1.75rem;
+  
 
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
@@ -15,6 +16,24 @@ export const Container = styled.div`
     background: ${({ theme }) => theme.colors.black};
     padding: 1.75rem 1.5rem;
     border-radius: 4px;
+
+    span {
+      position:absolute;
+      top:-0.5rem;
+      left:-0.5rem;
+
+      background:${({ theme }) => theme.colors.red};
+      width:2rem;
+      height:2rem;
+      border-radius:50%;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-weight:500;
+      font-size:1.125rem;
+    }
 
     h2 {
       margin-bottom: 0.75rem;
@@ -55,6 +74,8 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
+
 
         svg {
           stroke: ${({ theme }) => theme.colors.white};
