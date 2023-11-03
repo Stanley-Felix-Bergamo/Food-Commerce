@@ -3,12 +3,14 @@ import { Container } from './styles';
 import { currecyFormat } from '../../helpers/currecyFormat';
 import SkeletonSnack from '../SkeletonSnack';
 import { SnackData } from '../../interfaces/SnackData';
+import { useCart } from '../../hooks/useCart';
 
 interface SnacksProps {
   snacks: SnackData[];
 }
 
 const Snacks = ({ snacks }: SnacksProps) => {
+  const { addSnackIntoCart } = useCart();
   return (
     <Container>
       {!snacks.length
@@ -20,7 +22,7 @@ const Snacks = ({ snacks }: SnacksProps) => {
               <p>{snack.description}</p>
               <div>
                 <strong>{currecyFormat(snack.price)}</strong>
-                <button type='button'>
+                <button type='button' onClick={() => addSnackIntoCart(snack)}>
                   <FiPlus />
                 </button>
               </div>
