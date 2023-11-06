@@ -22,8 +22,10 @@ interface UpdateCartProps {
 interface CartContextProps {
   cart: Snack[];
   addSnackIntoCart: (snack: SnackData) => void;
-  // removeSnackFromCart: ({ id, snack }: RemoveSnackFromCart) => void;
-  // updateCart: ({ id, snack, newQuantity }: UpdateCartProps) => void;
+  removeSnackFromCart: (snack: Snack) => void;
+  snackCartIncrement: (snack: Snack) => void;
+  snackCartDecrement: (snack: Snack) => void;
+  confirmOrder: () => void;
 }
 
 interface CartProviderProps {
@@ -34,6 +36,37 @@ export const CartContext = createContext({} as CartContextProps);
 
 export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<Snack[]>([]);
+
+  const updateSnackQuantity = (snack: Snack, newQuantity: number) => {
+    if (newQuantity <= 0) return;
+
+    const snackExistentInCart = cart.find(
+      (item) => item.id === snack.id && item.snack === snack.snack,
+    );
+
+    if (!snackExistentInCart) return;
+
+    const newCart = cart.map((item) => {
+      if (item.id === snackExistentInCart.id && item.snack === snackExistentInCart.snack) {
+        return { ...item, quantity: newQuantity, subtotal: item.price * newQuantity };
+      }
+      return item;
+    });
+    setCart(newCart);
+  };
+
+  const removeSnackFromCart = (snack: Snack): void => {
+    const newCart = cart.filter((item) => !(item.id === snack.id && item.snack === snack.snack));
+    setCart(newCart);
+  };
+
+  const snackCartIncrement = (snack: Snack) => {
+    updateSnackQuantity(snack, snack.quantity + 1);
+  };
+
+  const snackCartDecrement = (snack: Snack) => {
+    updateSnackQuantity(snack, snack.quantity - 1);
+  };
 
   const addSnackIntoCart = (snack: SnackData): void => {
     //Busca
@@ -62,5 +95,23 @@ export function CartProvider({ children }: CartProviderProps) {
 
     setCart(newCart);
   };
-  return <CartContext.Provider value={{ cart, addSnackIntoCart }}>{children}</CartContext.Provider>;
+
+  const confirmOrder = () => {
+    //
+  };
+
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        addSnackIntoCart,
+        removeSnackFromCart,
+        snackCartIncrement,
+        snackCartDecrement,
+        confirmOrder,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 }
