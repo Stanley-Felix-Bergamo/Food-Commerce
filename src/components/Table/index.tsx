@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useCart } from '../../hooks/useCart';
 import TableDesktop from '../TableDesktop';
 import TableMobile from '../TableMobile';
+import EmptyCart from '../EmptyCart';
 
 const Table = () => {
   const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth);
@@ -20,7 +21,7 @@ const Table = () => {
   }, []);
 
   if (cart.length === 0) {
-    return <h1>Ops! não há pedios no carrinho</h1>;
+    return <EmptyCart title='Ops! não há pedios no carrinho' />;
   }
   return windowWidth > 768 ? <TableDesktop /> : <TableMobile />;
 };
