@@ -39,7 +39,7 @@ const TableMobile = () => {
           </div>
         </div>
       ))}
-      <ComfirmOrder />
+      <ComfirmOrder texto='Finalizar Pedido' />
     </Container>
   );
 };

@@ -2,13 +2,17 @@ import { currecyFormat } from '../../helpers/currecyFormat';
 import { useCart } from '../../hooks/useCart';
 import { Container } from './styles';
 
-const ComfirmOrder = () => {
+interface Props {
+  texto: string;
+}
+
+const ComfirmOrder = ({ texto }: Props) => {
   const { cart } = useCart();
   const totalAmount = cart.reduce((acc, item) => (acc += item.subtotal), 0);
 
   return (
     <Container>
-      <button type='button'>Finalizar Pedido</button>
+      <button type='button'>{texto}</button>
       <span>
         Total <strong>{currecyFormat(totalAmount)}</strong>
       </span>

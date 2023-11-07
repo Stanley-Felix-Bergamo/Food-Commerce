@@ -53,7 +53,7 @@ const TableDesktop = () => {
           ))}
         </tbody>
       </table>
-      <ComfirmOrder />
+      <ComfirmOrder texto='Finalizar Pedido' />
     </Container>
   );
 };
