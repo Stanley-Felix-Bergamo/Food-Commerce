@@ -7,12 +7,12 @@ interface Props {
 }
 
 const ComfirmOrder = ({ texto }: Props) => {
-  const { cart, confirmOrder } = useCart();
+  const { cart, payOrder } = useCart();
   const totalAmount = cart.reduce((acc, item) => (acc += item.subtotal), 0);
 
   return (
     <Container>
-      <button type='button' onClick={confirmOrder}>
+      <button type='button' onClick={payOrder}>
         {texto}
       </button>
       <span>

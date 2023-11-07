@@ -1,4 +1,4 @@
-import ComfirmOrder from '../../components/ComfirmOrder';
+import PayOrder from '../../components/PayOrder';
 import Head from '../../components/Head';
 import OrderHeader from '../../components/OrderHeader';
 import { Container, Inner, Form } from './styles';
@@ -153,7 +153,7 @@ const Payment = () => {
             </div>
           </div>
         </Form>
-        <ComfirmOrder texto='Pagar' />
+        <PayOrder texto='Pagar' />
       </Inner>
     </Container>
   );
