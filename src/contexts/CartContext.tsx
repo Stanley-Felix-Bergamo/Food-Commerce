@@ -37,9 +37,24 @@ interface CartProviderProps {
 
 export const CartContext = createContext({} as CartContextProps);
 
+const localStorageKey = '@FoodCommerce:cart';
+
 export function CartProvider({ children }: CartProviderProps) {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<Snack[]>([]);
+  const [cart, setCart] = useState<Snack[]>(() => {
+    const value = localStorage.getItem(localStorageKey);
+    if (value) return JSON.parse(value);
+    return [];
+  });
+
+  const saveCart = (items: Snack[]) => {
+    setCart(items);
+    localStorage.setItem(localStorageKey, JSON.stringify(items));
+  };
+
+  const clearCart = () => {
+    localStorage.removeItem(localStorageKey);
+  };
 
   const updateSnackQuantity = (snack: Snack, newQuantity: number) => {
     if (newQuantity <= 0) return;
@@ -56,12 +71,12 @@ export function CartProvider({ children }: CartProviderProps) {
       }
       return item;
     });
-    setCart(newCart);
+    saveCart(newCart);
   };
 
   const removeSnackFromCart = (snack: Snack): void => {
     const newCart = cart.filter((item) => !(item.id === snack.id && item.snack === snack.snack));
-    setCart(newCart);
+    saveCart(newCart);
   };
 
   const snackCartIncrement = (snack: Snack) => {
@@ -104,6 +119,7 @@ export function CartProvider({ children }: CartProviderProps) {
     navigate('/payment');
   };
   const payOrder = (customer: CustomerData) => {
+    clearCart();
     return;
   };
 
